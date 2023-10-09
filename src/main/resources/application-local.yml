@@ -1,0 +1,30 @@
+spring:
+  security:
+    user:
+      name: root123
+      password: root123
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/iticproject}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:j20031027}
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-file-size: 15MB
+file:
+  server:
+    domain-name: 'http://localhost:8080'
