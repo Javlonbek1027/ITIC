@@ -9,6 +9,7 @@ import uz.itic.itic_company.example.model.mapper.AttachmentMapper;
 import uz.itic.itic_company.example.model.mapper.EmployeeMapper;
 import uz.itic.itic_company.example.repository.EmployeeRepository;
 
+import java.util.List;
 import java.util.UUID;
 @Service
 public class EmployeeService extends GenericService<Employee, UUID, EmployeeDto, EmployeeRepository, EmployeeMapper> implements Deletable {
@@ -21,5 +22,9 @@ public class EmployeeService extends GenericService<Employee, UUID, EmployeeDto,
     public EmployeeDto create(EmployeeDto dto) {
         var employee = mapper.toEntity(dto);
         return mapper.toDto(repository.save(employee));
+    }
+
+    public List<EmployeeDto> search(String name) {
+        return mapper.toDtoList(repository.findByFirstNameContainingIgnoreCase(name));
     }
 }

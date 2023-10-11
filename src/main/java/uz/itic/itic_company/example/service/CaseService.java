@@ -37,6 +37,7 @@ public class CaseService extends GenericService<Case, UUID, CaseDto, CaseReposit
         entity.setAttachmentId(dto.getAttachmentId());
         entity.setClient(dto.getClient());
         entity.setLink(dto.getLink());
+        entity.setIsActive(dto.getIsActive());
         StringBuilder tags = new StringBuilder();
         if (!dto.getTagsList().isEmpty()) {
             for (String s : dto.getTagsList()) {
@@ -115,5 +116,16 @@ public class CaseService extends GenericService<Case, UUID, CaseDto, CaseReposit
         dto.setLink(entity.getLink());
         dto.setIsActive(entity.getIsActive());
         return dto;
+    }
+
+    public List<CaseDto> search(String data) {
+        List<CaseDto> list = new ArrayList<>();
+        List<Case> all = caseRepository.findByProjectNameContainingIgnoreCase(data);
+        if (!all.isEmpty()) {
+            for (Case aCase : all) {
+                list.add(toDto(aCase));
+            }
+        }
+        return list;
     }
 }

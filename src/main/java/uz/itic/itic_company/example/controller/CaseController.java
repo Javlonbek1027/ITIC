@@ -42,6 +42,11 @@ public class CaseController extends GenericController<Case, UUID, CaseDto, CaseR
         return Header.ok(caseService.getList());
     }
 
+    @GetMapping("/search")
+    Header<List<CaseDto>> search(@RequestParam String projectName) {
+        return Header.ok(caseService.search(projectName));
+    }
+
 //    @DeleteMapping("/delete/{id}")
 //    public Header<Void> delete(@PathVariable UUID id){
 //        caseService.delete(id);
