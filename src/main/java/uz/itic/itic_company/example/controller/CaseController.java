@@ -23,27 +23,27 @@ public class CaseController extends GenericController<Case, UUID, CaseDto, CaseR
     }
     private final CaseService caseService;
     @PostMapping("/add")
-    Header<CaseDtoForTransfer> addCase(@RequestBody Header<CaseDtoForTransfer> caseDto){
+    public Header<CaseDtoForTransfer> addCase(@RequestBody Header<CaseDtoForTransfer> caseDto){
         return Header.ok(caseService.create(caseDto.getData()));
     }
 
     @GetMapping("/get/one/{id}")
-    Header<CaseDto> getOne(@PathVariable UUID id){
+    public Header<CaseDto> getOne(@PathVariable UUID id){
         return Header.ok(caseService.get(id));
     }
 
     @PutMapping("/edite")
-    Header<CaseDto> edite(@RequestBody Header<CaseDto> dto){
+    public Header<CaseDto> edite(@RequestBody Header<CaseDto> dto){
         return Header.ok(caseService.edit(dto.getData()));
     }
 
     @GetMapping("/get/all/info")
-    Header<List<CaseDto>> getAll(){
+    public Header<List<CaseDto>> getAll(){
         return Header.ok(caseService.getList());
     }
 
     @GetMapping("/search")
-    Header<List<CaseDto>> search(@RequestParam String projectName) {
+    public Header<List<CaseDto>> search(@RequestParam String projectName) {
         return Header.ok(caseService.search(projectName));
     }
 

@@ -6,10 +6,7 @@ import org.hibernate.internal.util.StringHelper;
 import org.springframework.web.bind.annotation.*;
 import uz.itic.itic_company.example.model.dto.*;
 import uz.itic.itic_company.example.model.dto.req.PaginationRequest;
-import uz.itic.itic_company.example.service.EmployeeService;
-import uz.itic.itic_company.example.service.PartnerService;
-import uz.itic.itic_company.example.service.ResumeService;
-import uz.itic.itic_company.example.service.VacancyService;
+import uz.itic.itic_company.example.service.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +20,7 @@ public class CommonApiController {
     private final PartnerService partnerService;
     private final EmployeeService employeeService;
     private final VacancyService vacancyService;
+    private final CallRequestService callRequestService;
     @PostMapping("/resume")
     public Header<?> sendResume(@RequestBody Header<ResumeDto> resumeDto){
         resumeService.create(resumeDto.getData());
@@ -43,8 +41,13 @@ public class CommonApiController {
         return Header.ok(listPagination.getData(),listPagination.getPaginationData());
     }
     @GetMapping("/partner")
-    Header<List<PartnerDto>> getPartners(PaginationRequest paginationRequest){
+    public Header<List<PartnerDto>> getPartners(PaginationRequest paginationRequest){
         var page = partnerService.getListPagination(paginationRequest);
         return Header.ok(page.getData(),page.getPaginationData());
+    }
+
+    @PostMapping("/call-request")
+    public Header<CallRequestDto>  sendCallRequest(@RequestBody Header<CallRequestDto> dto){
+        return Header.ok(callRequestService.create(dto.getData()));
     }
 }
