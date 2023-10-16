@@ -15,6 +15,7 @@ import java.util.UUID;
 public class TestomonialDto extends BaseDTO<UUID> {
     private String name;
 
+    private String companyName;
     private String surname;
 
     private String content;

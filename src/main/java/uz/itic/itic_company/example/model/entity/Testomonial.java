@@ -17,6 +17,7 @@ public class Testomonial extends BaseEntityUID {
 
     private String surname;
 
+    private String companyName;
     private String content;
 
     private  Boolean isActive;
