@@ -15,6 +15,7 @@ import uz.itic.itic_company.example.repository.CaseRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -111,7 +112,13 @@ public class CaseService extends GenericService<Case, UUID, CaseDto, CaseReposit
         dto.setAttachment(attachmentMapper.toDto(entity.getAttachment()));
         dto.setClient(entity.getClient());
         dto.setAttachmentId(entity.getAttachmentId());
-        List<String> split = List.of(entity.getTags().split(",", 5));
+        List<String> split = List.of(entity.getTags().split(","));
+//        List<String> result = new ArrayList<>();
+//        for (String s : split) {
+//            if(!Objects.equals(s, "")){
+//                result.add(s);
+//            }
+//        }
         dto.setTagsList(split);
         dto.setLink(entity.getLink());
         dto.setIsActive(entity.getIsActive());

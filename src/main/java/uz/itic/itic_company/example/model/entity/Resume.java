@@ -11,7 +11,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "resume")
-@Builder
 public class Resume extends BaseEntityUID {
 
     @Column(name = "fullName", nullable = false)

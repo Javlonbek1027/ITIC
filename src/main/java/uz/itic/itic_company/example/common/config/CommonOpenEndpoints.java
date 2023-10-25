@@ -22,12 +22,15 @@ public interface CommonOpenEndpoints {
 
     String SWAGGER_AUTH = "/swagger-auth";
     String COMMON_API = "/api/public/**";
+    String COMMON_API_FOR_FILE = "/api/file/**";
 
     Map<HttpMethod, List<String>> OPEN_ENDPOINTS = Map.of(
-            HttpMethod.POST, of(COMMON_API
+            HttpMethod.POST, of(COMMON_API,
+                    COMMON_API_FOR_FILE
             ),
             HttpMethod.DELETE, of(),
             HttpMethod.GET, of(COMMON_API,
+                    COMMON_API_FOR_FILE,
                     SWAGGER_AUTH),
             HttpMethod.PUT, of()
     );
