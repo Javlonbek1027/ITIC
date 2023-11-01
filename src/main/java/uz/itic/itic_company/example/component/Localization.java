@@ -17,9 +17,6 @@ public class Localization {
 
     private final MessageSource messageSource;
 
-    /**
-     * Gets message from message bundle
-     */
     public String getMessage(String message) {
         try {
             return messageSource.getMessage(message,
